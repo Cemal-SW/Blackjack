@@ -68,30 +68,38 @@ def black_jack():
 					for x in range(len(user_cards)):
 						if user_cards[x] == 11:
 							user_cards_sum -= 10
+			elif ask_to_get_card == 'n':
+				get_card = False
 				
-				message()
-				
+			message()
+			compare = True
 			if user_cards_sum > 21:
-						print("You went over. You lose 😭")
-						get_card = False
-						should_continue = False 			
+				final_message()
+				print("You went over. You lose 😭")
+				get_card = False
+				should_continue = False
+				compare = False 			
 					
 				
-			else:
-				if computer_cards_sum > 21:
-					print("Opponent went over. You win 😁")
-				get_card = False
 			
-		if abs(user_cards_sum - 21) > abs(computer_cards_sum - 21) and should_continue:
-			final_message()
-			print("You lose 😤")
-			should_continue = False
-		elif abs(user_cards_sum - 21) == abs(computer_cards_sum - 21) and should_continue:
-			final_message()
-			print("Draw 🙃")
-			should_continue = False
-		elif abs(user_cards_sum - 21) < abs(computer_cards_sum) and should_continue:
-			print("You win 😃")
-			should_continue = False
+			if computer_cards_sum > 21:
+				final_message()
+				print("Opponent went over. You win 😁")
+				get_card = False
+				compare = False
+
+		while compare == True:		
+			if abs(user_cards_sum - 21) > abs(computer_cards_sum - 21) and should_continue:
+				final_message()
+				print("You lose 😤")
+				should_continue = False
+			elif abs(user_cards_sum - 21) == abs(computer_cards_sum - 21) and should_continue:
+				final_message()
+				print("Draw 🙃")
+				should_continue = False
+			elif abs(user_cards_sum - 21) < abs(computer_cards_sum) and should_continue:
+				final_message()
+				print("You win 😃")
+				should_continue = False
 
 new_game()
